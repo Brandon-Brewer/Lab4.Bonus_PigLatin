@@ -24,7 +24,7 @@ namespace Lab4.Bonus_PigLatin
                 }
                 Console.Write(finalTranslation.Trim());
                 Console.Write(endChar + "\n");
-            } while (WantCont() == 'y');
+            } while (WantCont());
         }
 
         static string GetStrInput(out char endChar)
@@ -103,7 +103,7 @@ namespace Lab4.Bonus_PigLatin
                 return word + " ";
             }
         }
-        static char WantCont()
+        static bool WantCont()
         {
             char cont;
 
@@ -114,10 +114,10 @@ namespace Lab4.Bonus_PigLatin
                 cont = Console.ReadKey().KeyChar;
                 if (cont == 'n' || cont == 'N')
                 {
-                    return 'n';
+                    return false;
                 }
             } while (cont != 'y' && cont != 'Y');
-            return 'y';
+            return true;
         }
     }
 }
