@@ -60,8 +60,8 @@ namespace Lab4.Bonus_PigLatin
 
         static string TranslatePigLatin(string word)
         {
-            Queue<char> constQueue = new Queue<char>();
-            int i = 0;
+            List<char> constList = new List<char>();
+            int consts = 0;
             string constEnding = "";
             string alphaPattern = @"^[A-Za-z]+$";
             string vowelPattern = @"[aeiouAEIOU]";
@@ -70,31 +70,31 @@ namespace Lab4.Bonus_PigLatin
             {
                 foreach (char c in word)
                 {
-                    // for each character in the word, if it's a consonant add it to a queue and add one to i (which is used to remove the first consonants before a vowel)
+                    // for each character in the word, if it's a consonant add it to a list and add one to consonants (which is used to remove the first consonants before a vowel)
                     if (!Regex.IsMatch(c.ToString(), vowelPattern))
                     {
-                        constQueue.Enqueue(c);
-                        i++;
+                        constList.Add(c);
+                        consts++;
                     }
-                    // once a vowel is reached stop adding consonants to the queue
+                    // once a vowel is reached stop adding consonants to the list
                     else { break; }
                 }
 
-                if (constQueue.Count > 0)
+                if (constList.Count > 0)
                 {
                     // put together the consonant ending
-                    for (int a = 0; a <= constQueue.Count; a++)
+                    for (int i = 0; i < constList.Count; i++)
                     {
-                        constEnding += constQueue.Dequeue();
+                        constEnding += constList[i];
                     }
                 }
                 else
                 {
-                    // if the word starts with a vowel the consonant queue is empty...but we want to add a "w"
+                    // if the word starts with a vowel the consonant list is empty...but we want to add a "w"
                     constEnding = "w";
                 }
 
-                string newWord = word.Remove(0, i) + constEnding + "ay ";
+                string newWord = word.Remove(0, consts) + constEnding + "ay ";
                 return newWord;
             }
             else
