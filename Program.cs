@@ -127,7 +127,9 @@ namespace Lab4.Bonus_PigLatin
 
         static void SplashScreen()
         {
-            int sleepTime = 50;
+            int sleepTime = 70;
+            Console.ForegroundColor = ConsoleColor.Magenta;
+
             do
             {
                 while (!Console.KeyAvailable)
@@ -144,6 +146,8 @@ namespace Lab4.Bonus_PigLatin
                     }
                 }
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+
+            Console.ResetColor();
         }
     }
 }
