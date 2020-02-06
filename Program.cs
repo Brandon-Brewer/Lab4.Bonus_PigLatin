@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Lab4.Bonus_PigLatin
@@ -8,6 +9,8 @@ namespace Lab4.Bonus_PigLatin
     {
         static void Main(string[] args)
         {
+            SplashScreen();
+
             do
             {
                 string finalTranslation = "";
@@ -114,10 +117,33 @@ namespace Lab4.Bonus_PigLatin
                 cont = Console.ReadKey().KeyChar;
                 if (cont == 'n' || cont == 'N')
                 {
+                    Console.WriteLine();
                     return false;
                 }
             } while (cont != 'y' && cont != 'Y');
+
             return true;
+        }
+
+        static void SplashScreen()
+        {
+            int sleepTime = 50;
+            do
+            {
+                while (!Console.KeyAvailable)
+                {
+                    for (int i = 50; i > 0; i -= 2)
+                    {
+                        Console.Clear();
+                        Console.WriteLine(String.Concat(Enumerable.Repeat(" ", i)) + @"    _____  ");
+                        Console.WriteLine(String.Concat(Enumerable.Repeat(" ", i)) + @"^..^     \9");
+                        Console.WriteLine(String.Concat(Enumerable.Repeat(" ", i)) + @"(oo)_____/ ");
+                        Console.WriteLine(String.Concat(Enumerable.Repeat(" ", i)) + @"   WW  WW  ");
+                        Console.WriteLine("\nPress ESC key to start translating to Pig Latin, Oinkway Oinkway!");
+                        System.Threading.Thread.Sleep(sleepTime);
+                    }
+                }
+            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
         }
     }
 }
